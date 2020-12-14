@@ -19,7 +19,7 @@ if (isset($_POST['login'])) {
         echo '<p>Wrong username/password.</p>';
     } else {
         if (password_verify($password,$user['password'])) {
-            setcookie("user", $user['username'],time()+3600);
+            setcookie('user', $user['username'],time()+3600,'/');
             '<p>Login succesful!</p>';
             header('Location: index.php');
         } else {

@@ -32,7 +32,7 @@ function template_header($title) {
             <a href="index.php"><i class="fas fa-home"></i>Home</a>
     		<a href="read.php"><i class="fas fa-address-book"></i>Inventory</a>
     		<a href="cat_read.php"><i class="fas fa-address-book"></i>Category</a>
-    		<form action="logout.php"><button><a href="" ><i class="fas fa-sign-out-alt"></i>Logout</a></button></form>
+    		<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logouttttttttttttttttttttttt</a>
     	</div>
     </nav>
 EOT;
