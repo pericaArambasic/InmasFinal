@@ -49,6 +49,7 @@ $search_result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <td><?=$result['inventory_name']?></td>
                 <td><?=$result['category_name']?></td>
                 <td><?=$result['inventory_price']?></td>
+                <td></td>
             </tr>
         <?php endforeach; ?>
         </tbody>

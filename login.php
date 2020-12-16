@@ -2,10 +2,11 @@
 include 'functions.php';
 $pdo = pdo_connect_mysql();
 
+print_r($_COOKIE['user'] . $_COOKIE['log_attempts']);
 
-print_r($_COOKIE['user']);
-
-
+if ($_COOKIE['log_attempts'] == 3) {
+    header('Location: login_error.php');
+}
 
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
@@ -24,6 +25,11 @@ if (isset($_POST['login'])) {
             header('Location: index.php');
         } else {
             echo '<p>Wrong username/password.</p>';
+            if (!isset($_COOKIE['log_attempts'])) {
+                setcookie('log_attempts',1,time()+3600,'/');
+            } else {
+                $_COOKIE['log_attempts'] + 1;
+            }
         }
     }
 }
