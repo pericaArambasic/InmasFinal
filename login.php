@@ -2,11 +2,7 @@
 include 'functions.php';
 $pdo = pdo_connect_mysql();
 
-print_r($_COOKIE['user'] . $_COOKIE['log_attempts']);
-
-if ($_COOKIE['log_attempts'] == 3) {
-    header('Location: login_error.php');
-}
+$tries = getTries();
 
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
@@ -18,22 +14,33 @@ if (isset($_POST['login'])) {
 
     if (!$user) {
         echo '<p>Wrong username/password.</p>';
+        if ($tries == 3) {
+            header('Location: login_error.php');
+            exit;
+        } elseif(empty($tries)) {
+            firstTry();
+        } else {
+            tryIncrement();
+        }
     } else {
         if (password_verify($password,$user['password'])) {
             setcookie('user', $user['username'],time()+3600,'/');
-            '<p>Login succesful!</p>';
+            echo '<p>Login succesful!</p>';
             header('Location: index.php');
+            exit;
         } else {
             echo '<p>Wrong username/password.</p>';
-            if (!isset($_COOKIE['log_attempts'])) {
-                setcookie('log_attempts',1,time()+3600,'/');
+            if ($tries == 3) {
+                header('Location: login_error.php');
+                exit;
+            } elseif(empty($tries)) {
+                firstTry();
             } else {
-                $_COOKIE['log_attempts'] + 1;
+                tryIncrement();
+            }
+                }
             }
         }
-    }
-}
-
 ?>
 
 <?=template_header('Login')?>

@@ -8,7 +8,6 @@ function pdo_connect_mysql() {
         return new PDO('mysql:host=' . $DATABASE_HOST . ';dbname=' . $DATABASE_NAME . ';charset=utf8', $DATABASE_USER, $DATABASE_PASS);
 
     } catch (PDOException $exception) {
-        // If there is an error with the connection, stop the script and display the error.
         exit('Failed to connect to database!');
     }
 }
@@ -45,5 +44,44 @@ function template_footer() {
 EOT;
 }
 
+function getIp() {
+    $ip = $_SERVER['REMOTE_ADDR'];
+    return $ip;
+}
 
+function getTries() {
+    $ip = getIp();
+    $pdo = pdo_connect_mysql();
+    $stmt = $pdo->prepare("SELECT * FROM logtries WHERE ip_address = :ip_address");
+    $stmt->bindParam("ip_address", $ip, PDO::PARAM_STR);
+    $stmt->execute();
+    $data =$stmt->fetch(PDO::FETCH_ASSOC);
+    $result = $data['attempts'];
+    return $result;
+}
+
+function firstTry() {
+    $ip = getIp();
+    $pdo = pdo_connect_mysql();
+    $stmt = $pdo->prepare("INSERT INTO logtries(ip_address, attempts) VALUES(:ip_address,1)");
+    $stmt->bindParam("ip_address", $ip, PDO::PARAM_STR);
+    $stmt->execute();
+}
+
+function tryIncrement() {
+    $ip = getIp();
+    $pdo = pdo_connect_mysql();
+    $stmt = $pdo->prepare("UPDATE logtries SET attempts = attempts + 1 WHERE ip_address = :ip_address");
+    $stmt->bindParam("ip_address", $ip, PDO::PARAM_STR);
+    $stmt->execute();
+}
+
+function resetTries() {
+    $ip = getIp();
+    $pdo = pdo_connect_mysql();
+    $stmt = $pdo->prepare("DELETE FROM logtries WHERE ip_address = :ip_address");
+    $stmt->bindParam("ip_address", $ip, PDO::PARAM_STR);
+    $stmt->execute();
+    header('refresh:30;url=login.php');
+}
 ?>
