@@ -23,5 +23,4 @@
 <?php
 include 'functions.php';
 resetTries();
-
 ?>
