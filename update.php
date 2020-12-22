@@ -19,11 +19,13 @@ if (isset($_GET['id_inventory'])) {
         $category = isset($_POST['id_cat']) ? $_POST['id_cat'] : '';
         $price = isset($_POST['inventory_price']) ? $_POST['inventory_price'] : '';
         $stmt = $pdo->prepare('UPDATE inventory SET  inventory_name = ?, id_cat = ?, inventory_price = ?  WHERE id_inventory = ?');
+        $timestamp = date("F d, Y h:i:s A", time());
+        $message = $timestamp . " Entry updated by user:" . $_COOKIE['user'] ."->inventory" . PHP_EOL;
+        file_put_contents('logs/table.log', $message, FILE_APPEND);
         $stmt->execute([$name, $category, $price, $_GET['id_inventory']]);
         $msg = 'Updated Successfully!';
 
     }
-    // Get the contact from the contacts table
     $stmt = $pdo->prepare('SELECT * FROM inventory WHERE id_inventory = ?');
     $stmt->execute([$_GET['id_inventory']]);
     $asset = $stmt->fetch(PDO::FETCH_ASSOC);

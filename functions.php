@@ -7,6 +7,7 @@ function pdo_connect_mysql() {
     try {
         return new PDO('mysql:host=' . $DATABASE_HOST . ';dbname=' . $DATABASE_NAME . ';charset=utf8', $DATABASE_USER, $DATABASE_PASS);
     } catch (PDOException $exception) {
+        echo $exception->getMessage();
         exit('Failed to connect to database!');
     }
 }
@@ -84,7 +85,4 @@ function resetTries() {
     header('refresh:30;url=login.php');
 }
 
-function log($message) {
-
-}
 ?>

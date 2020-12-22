@@ -18,6 +18,9 @@ if (isset($_GET['id_inventory'])) {
     if (isset($_GET['confirm'])) {
         if ($_GET['confirm'] == 'yes') {
             $stmt = $pdo->prepare('DELETE FROM inventory WHERE id_inventory = ?');
+            $timestamp = date("F d, Y h:i:s A", time());
+            $message = $timestamp . " Entry deleted by user:" . $_COOKIE['user'] . "->inventory" . PHP_EOL;
+            file_put_contents('logs/table.log', $message, FILE_APPEND);
             $stmt->execute([$_GET['id_inventory']]);
             $msg = 'You have deleted the asset!';
         } else {

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,5 +21,10 @@
 
 <?php
 include 'functions.php';
+
+$timestamp = date("F d, Y h:i:s A", time());
+$message = $timestamp . " Unknown user from " . $_SERVER['REMOTE_ADDR'] . " redirected to login error page" .PHP_EOL;
+file_put_contents('/logs/login.log', $message, FILE_APPEND);
+
 resetTries();
 ?>

@@ -12,6 +12,9 @@ if(isset($_POST['register'])) {
 
     if($stmt->rowCount() > 0) {
         echo '<p>This user already exists!</p>';
+        $timestamp = date("F d, Y h:i:s A", time());
+        $message = $timestamp . " Registration attempt with existing username from " . $_SERVER['REMOTE_ADDR'] . PHP_EOL;
+        file_put_contents('logs/registration.log', $message, FILE_APPEND);
     }
     if ($stmt->rowCount() == 0) {
         $query = $pdo->prepare("INSERT INTO users(username,password) VALUES (:username,:password)");
@@ -19,9 +22,15 @@ if(isset($_POST['register'])) {
         $query->bindParam("password", $encrypt_password, PDO::PARAM_STR);
         $result = $query->execute();
         if ($result) {
+            $timestamp = date("F d, Y h:i:s A", time());
+            $message = $timestamp . " Registration attempt successful from: " . $_SERVER['REMOTE_ADDR'] . "->" . $username .  PHP_EOL;
+            file_put_contents('logs/registration.log', $message, FILE_APPEND);
             echo '<p class="success">Your registration was successful!</p>';
             header('Location: login.php');
         } else {
+            $timestamp = date("F d, Y h:i:s A", time());
+            $message = $timestamp . " Registration attempt failed from: " . $_SERVER['REMOTE_ADDR']  .  PHP_EOL;
+            file_put_contents('logs/registration.log', $message, FILE_APPEND);
             echo '<p class="error">Something went wrong!</p>';
         }
     }

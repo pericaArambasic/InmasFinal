@@ -7,17 +7,14 @@ if(!isset($_COOKIE['user'])){
 include 'functions.php';
 $pdo = pdo_connect_mysql();
 $msg = '';
-// Check if POST data is not empty
 if (!empty($_POST)) {
-    // Post data not empty insert a new record
-    // Set-up the variables that are going to be inserted, we must check if the POST variables exist if not we can default them to blank
     $id = isset($_POST['id_cat']) && !empty($_POST['id_cat']) && $_POST['id_cat'] != 'auto' ? $_POST['id_cat'] : NULL;
-    // Check if POST variable "name" exists, if not default the value to blank, basically the same for all variables
     $name = isset($_POST['category_name']) ? $_POST['category_name'] : '';
-    // Insert new record into the contacts table
     $stmt = $pdo->prepare('INSERT INTO categories VALUES (?, ?)');
+    $timestamp = date("F d, Y h:i:s A", time());
+    $message = $timestamp . " New entry created by user:" . $_COOKIE['user'] . "->categories" . PHP_EOL;
+    file_put_contents('logs/table.log', $message, FILE_APPEND);
     $stmt->execute([$id, $name]);
-    // Output message
     $msg = 'Created Successfully!';
 }
 ?>

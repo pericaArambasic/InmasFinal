@@ -32,7 +32,6 @@ if (isset($_POST['login'])) {
             echo '<p>Wrong username/password.</p>';
             if ($tries == 3) {
                 header('Location: login_error.php');
-                exit;
             } elseif(empty($tries)) {
                 firstTry();
             } else {

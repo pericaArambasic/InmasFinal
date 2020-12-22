@@ -13,6 +13,9 @@ if (isset($_GET['id_cat'])) {
         $id = isset($_POST['id_cat']) ? $_POST['id_cat'] : NULL;
         $name = isset($_POST['category_name']) ? $_POST['category_name'] : '';
         $stmt = $pdo->prepare('UPDATE categories SET  category_name = ?  WHERE id_cat = ?');
+        $timestamp = date("F d, Y h:i:s A", time());
+        $message = $timestamp . " Entry updated by user:" . $_COOKIE['user'] . "->categories" .PHP_EOL;
+        file_put_contents('logs/table.log', $message, FILE_APPEND);
         $stmt->execute([$name, $_GET['id_cat']]);
         $msg = 'Updated Successfully!';
     }

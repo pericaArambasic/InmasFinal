@@ -23,6 +23,9 @@ if (isset($_GET['id_cat'])) {
         if ($_GET['confirm'] == 'yes') {
             // User clicked the "Yes" button, delete record
             $stmt = $pdo->prepare('DELETE FROM categories WHERE id_cat = ?');
+            $timestamp = date("F d, Y h:i:s A", time());
+            $message = $timestamp . " Entry deleted by user:" . $_COOKIE['user'] ."->categories" . PHP_EOL;
+            file_put_contents('logs/table.log', $message, FILE_APPEND);
             $stmt->execute([$_GET['id_cat']]);
             $msg = 'You have deleted the category!';
         } else {
