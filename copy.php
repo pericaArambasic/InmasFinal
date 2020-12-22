@@ -45,7 +45,7 @@ if (!empty($_POST)) {
             <input type="number" name="inventory_price"  id="inventory_price" value="<?=$asset['inventory_price']?>">
             <select name="id_cat" id="id_cat">
                 <?php foreach ($data as $row): ?>
-                    <option selected value="<?=$asset["id_cat"]?>"><?=$row["category_name"]?></option>
+                    <option value="<?=$row["id_cat"]?>"><?=$row["category_name"]?></option>
                 <?php endforeach ?>
             </select>
             <input type="submit" value="Create">

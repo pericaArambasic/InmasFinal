@@ -4,8 +4,6 @@ if(!isset($_COOKIE['user'])){
     exit;
 } else {
 }
-print_r($_COOKIE);
-
 include 'functions.php';
 
 $search = '';
@@ -29,6 +27,17 @@ $search_result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <input type="submit" value="Search">
             </form>
     </div>
+    <form action="index.php" method="post">
+        <h4>Price:</h4>
+        <input type="submit" value="sort">
+        <select name="sort" id="sort">
+            <option selected value="">-</option>
+            <option value="asc">Ascending</option>
+            <option value="dsc">Descending</option>
+        </select>
+        <br>
+    </form>
+    <?=print_r($_POST) ?>
 
     <div class="content read">
     <h2>Assets</h2>
