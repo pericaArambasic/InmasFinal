@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d834ec2b-6df4-474b-ae1e-2573e30eb6bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/assets/wait.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/wait.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cat_create.php" beforeDir="false" afterPath="$PROJECT_DIR$/cat_create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cat_delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/cat_delete.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cat_update.php" beforeDir="false" afterPath="$PROJECT_DIR$/cat_update.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/delete.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login_error.php" beforeDir="false" afterPath="$PROJECT_DIR$/login_error.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/register.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/update.php" beforeDir="false" afterPath="$PROJECT_DIR$/update.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/read.php" beforeDir="false" afterPath="$PROJECT_DIR$/read.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +36,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1608644893041</updated>
-      <workItem from="1608644894128" duration="6000" />
+      <workItem from="1608644894128" duration="3241000" />
     </task>
     <servers />
   </component>

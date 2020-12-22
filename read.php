@@ -51,6 +51,7 @@ $num_inventory = $pdo->query('SELECT COUNT(*) FROM inventory')->fetchColumn();
                     <td><?=$asset['inventory_price']?></td>
                     <td class="actions">
                         <a href="update.php?id_inventory=<?=$asset['id_inventory']?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
+                        <a href="copy.php?id_inventory=<?=$asset['id_inventory']?>" class="edit" ><i class="fas fa-copy"></i></a>
                         <a href="delete.php?id_inventory=<?=$asset['id_inventory']?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
                     </td>
                 </tr>
